@@ -34,7 +34,6 @@ async function displayPopularMovies() {
 }
 
 // Display 20 most popular TV shows
-
 async function displayPopularShows() {
   const { results } = await fetchApiData('/tv/popular');
   console.log(results);
@@ -68,6 +67,8 @@ async function displayPopularShows() {
 async function displayMovieDetails() {
   const movieId = window.location.search.split('=')[1];
   const movie = await fetchApiData(`/movie/${movieId}`);
+  // Overlay for background image
+  displayBackgroundImage('movie', movie.backdrop_path);
   const div = document.createElement('div');
   div.innerHTML = `
       <div class="details-top">
@@ -100,9 +101,11 @@ async function displayMovieDetails() {
                 )
                 .join('')}
             </ul>
-            <a href="${
-              movie.homepage
-            }" target="_blank" class="btn">Visit Movie Homepage</a>
+            ${
+              movie.homepage !== ''
+                ? `<a href="${movie.homepage}" target="_blank" class="btn">Visit Movie Homepage</a>`
+                : `<span class="btn">No Homepage</span>`
+            }
           </div>
         </div>
         <div class="details-bottom">
@@ -125,6 +128,28 @@ async function displayMovieDetails() {
             .join(', ')}</div>
         </div>`;
   document.querySelector('#movie-details').appendChild(div);
+}
+
+//Display Backdrop in Details Pages
+function displayBackgroundImage(type, backdropPath) {
+  const overlayDiv = document.createElement('div');
+  overlayDiv.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${backdropPath})`;
+  overlayDiv.style.backgroundSize = 'cover';
+  overlayDiv.style.backgroundPosition = 'center';
+  overlayDiv.style.backgroundRepeat = 'no-repeat';
+  overlayDiv.style.height = '100vh';
+  overlayDiv.style.width = '100vw';
+  overlayDiv.style.position = 'absolute';
+  overlayDiv.style.top = '0';
+  overlayDiv.style.left = '0';
+  overlayDiv.style.zIndex = '-1';
+  overlayDiv.style.opacity = '0.2';
+
+  if (type === 'movie') {
+    document.querySelector('#movie-details').appendChild(overlayDiv);
+  } else {
+    document.querySelector('#show-details').appendChild(overlayDiv);
+  }
 }
 
 // Fetch data from TMDB API
