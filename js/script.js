@@ -6,7 +6,7 @@ const global = {
 
 async function displayPopularMovies() {
   const { results } = await fetchApiData('/movie/popular');
-  console.log(results);
+  // console.log(results);
   results.forEach((movie) => {
     const div = document.createElement('div');
     div.classList.add('card');
@@ -36,7 +36,7 @@ async function displayPopularMovies() {
 // Display 20 most popular TV shows
 async function displayPopularShows() {
   const { results } = await fetchApiData('/tv/popular');
-  console.log(results);
+  // console.log(results);
   results.forEach((show) => {
     const div = document.createElement('div');
     div.classList.add('card');
@@ -133,7 +133,7 @@ async function displayMovieDetails() {
 
 // Display Show Details
 async function displayShowDetails() {
-  console.log(window.location.search);
+  // console.log(window.location.search);
   const showId = window.location.search.split('=')[1];
   const show = await fetchApiData(`/tv/${showId}`);
   // Overlay for background image
@@ -225,6 +225,12 @@ function displayBackgroundImage(type, backdropPath) {
     document.querySelector('#show-details').appendChild(overlayDiv);
   }
 }
+// Display slider movies
+async function displaySlider() {
+  const results = await fetchApiData('/movie/now_playing');
+
+  console.log(results);
+}
 
 // Fetch data from TMDB API
 async function fetchApiData(endpoint) {
@@ -278,6 +284,7 @@ function init() {
   switch (global.currentPage) {
     case '/':
     case '/index.html':
+      displaySlider();
       displayPopularMovies();
       break;
     case '/shows.html':
