@@ -2,6 +2,11 @@ const global = {
   currentPage: window.location.pathname,
 };
 
+window.addEventListener('resize', () => {
+  const windowWidth = window.innerWidth;
+  console.log(`Window width: ${windowWidth}`);
+});
+
 // Display 20 most popular movies
 
 async function displayPopularMovies() {
@@ -265,6 +270,8 @@ function initSwiper() {
       500: { slidesPerView: 2 },
       768: { slidesPerView: 3 },
       1024: { slidesPerView: 4 },
+      1200: { slidesPerView: 5 },
+      1440: { slidesPerView: 6 },
     },
   });
 }
