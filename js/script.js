@@ -158,7 +158,7 @@ async function displayShowDetails() {
               <i class="fas fa-star text-primary"></i>
               ${show.vote_average.toFixed(1)} / 10
             </p>
-            <p class="text-muted">Release Date: ${show.release_date}</p>
+            <p class="text-muted">Release Date: ${show.first_air_date}</p>
             <p>
               ${show.overview}
             </p>
