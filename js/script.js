@@ -183,12 +183,16 @@ async function displayShowDetails() {
             <li><span class="text-secondary">Number Of Episodes:</span> ${
               show.number_of_episodes
             }</li>
-            <li><span class="text-secondary">Last Episode To Air:</span> .${
+            <li><span class="text-secondary">Last Episode To Air:</span> ${
               show.last_episode_to_air.air_date
             }</li>
-            <li><span class="text-secondary">Runtime:</span> ${
-              show.runtime
-            } minutes</li>
+            <li><span class="text-secondary">Runtime:</span>
+             ${
+               show.episode_run_time.length > 0
+                 ? `${show.episode_run_time[0]} minutes`
+                 : `not available or not known`
+             }
+    </li>
             <li><span class="text-secondary">Status:</span> ${show.status}</li>
           </ul>
           <h4>Production Companies</h4>
