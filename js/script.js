@@ -2,10 +2,10 @@ const global = {
   currentPage: window.location.pathname,
 };
 
-window.addEventListener('resize', () => {
+/* window.addEventListener('resize', () => {
   const windowWidth = window.innerWidth;
   console.log(`Window width: ${windowWidth}`);
-});
+}); */
 
 // Display 20 most popular movies
 
@@ -230,6 +230,14 @@ function displayBackgroundImage(type, backdropPath) {
     document.querySelector('#show-details').appendChild(overlayDiv);
   }
 }
+
+// Search Movies/Shows
+async function search() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  console.log(urlParams.get('type'));
+}
+
 // Display slider movies
 async function displaySlider() {
   const { results } = await fetchApiData('/movie/now_playing');
@@ -263,15 +271,15 @@ function initSwiper() {
     freeMode: true,
     loop: true,
     autoplay: {
-      delay: 4000,
+      delay: 3500,
       disableOnInteraction: false,
     },
     breakpoints: {
-      500: { slidesPerView: 2 },
-      768: { slidesPerView: 3 },
-      1024: { slidesPerView: 4 },
-      1200: { slidesPerView: 5 },
-      1440: { slidesPerView: 6 },
+      500: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 5 },
+      1200: { slidesPerView: 6 },
+      1440: { slidesPerView: 7 },
     },
   });
 }
@@ -341,7 +349,7 @@ function init() {
       displayShowDetails();
       break;
     case '/search.html':
-      console.log('Search');
+      search();
       break;
   }
   highlightActiveLink();
