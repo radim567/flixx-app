@@ -13,11 +13,6 @@ const global = {
   },
 };
 
-/* window.addEventListener('resize', () => {
-  const windowWidth = window.innerWidth;
-  console.log(`Window width: ${windowWidth}`);
-}); */
-
 // Display 20 most popular movies
 
 async function displayPopularMovies() {
@@ -387,11 +382,11 @@ function initSwiper() {
       disableOnInteraction: false,
     },
     breakpoints: {
-      500: { slidesPerView: 3 },
-      768: { slidesPerView: 4 },
-      1024: { slidesPerView: 5 },
-      1200: { slidesPerView: 6 },
-      1440: { slidesPerView: 7 },
+      500: { slidesPerView: 2 },
+      768: { slidesPerView: 3 },
+      1024: { slidesPerView: 4 },
+      1200: { slidesPerView: 5 },
+      1440: { slidesPerView: 6 },
     },
   });
 }
